@@ -10,8 +10,8 @@ Dependecies
 ===========
 
 * Lutok - https://github.com/soulik/lutok
-* GLEW
-* Lua 5.x or LuaJIT 2.x
+* GLEW - http://glew.sourceforge.net/
+* Lua 5.x or LuaJIT 2.x - http://www.lua.org/ or http://luajit.org/
 
 Notes
 =====
