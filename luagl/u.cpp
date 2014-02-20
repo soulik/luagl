@@ -30,7 +30,8 @@ namespace GLex {
 				data = _data.data();
 				glUniform1fv((GLint) state.to_integer(1), (GLsizei) size, (GLfloat*) data);
 			}else if (state.is_number(2)){
-				glUniform1f((GLint) state.to_integer(1), (GLfloat) state.to_number(2));
+				GLfloat value = state.to_number(2);
+				glUniform1f((GLint) state.to_integer(1), (GLfloat) value);
 			}
 			break;
 		default:

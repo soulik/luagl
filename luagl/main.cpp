@@ -54,6 +54,11 @@ static int prepareFBO(lutok::state& state){
 	return 1;
 }
 
+static int internalTest(lutok::state& state){
+	const void * data = state.to_lightuserdata(1);
+	return 0;
+}
+
 static int get_last_error(lutok::state& state){
 	DWORD le = GetLastError();
 	char buffer[1024];
@@ -350,6 +355,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["VertexAttribPointer"] = gl_VertexAttribPointer;
 	module["VertexPointer"] = gl_VertexPointer;
 	module["Viewport"] = gl_Viewport;
+
+	module["internalTest"] = internalTest;
 	
 	state.new_table();
 	lutok::registerLib(state, module);
