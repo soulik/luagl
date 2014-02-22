@@ -67,7 +67,9 @@ namespace GLex {
 		}
 		return 1;
 	}
-
+	/*
+		gl.Get(format, enum)
+	*/
 	int gl_Get(lutok::state& state){
 		string fmt = state.to_string(1);
 		GLenum pname = (GLenum) state.to_integer(2);
@@ -120,6 +122,66 @@ namespace GLex {
 		}
 		return 0;
 	}
+	/*
+		gl.GetEx(enum, type, count)
+	*/
+	int gl_GetEx(lutok::state& state){
+		GLenum pname = (GLenum) state.to_integer(1);
+		string _type = state.to_string(2);
+		unsigned int len = state.to_integer(3);
+		char type = 0;
+		if (_type.length()>0){
+			type = _type[0];
+		}
+
+		switch (type){
+		case 's':
+			{const char * str = (char *) glGetString(pname);
+			if (str){
+				state.push_string(str);
+				return 1;
+			}}
+			break;
+		case 'i':
+			{GLint * values = new GLint[len];
+			if (values){
+				glGetIntegerv(pname, values);
+				setArray<int>(state, static_cast<int *>(values), len);
+				delete[] values;
+				return 1;
+			}}
+			break;
+		case 'f':
+			{GLfloat * values = new GLfloat[len];
+			if (values){
+				glGetFloatv(pname, values);
+				setArray<float>(state, static_cast<float *>(values), len);
+				delete[] values;
+				return 1;
+			}}
+			break;
+		case 'd':
+			{GLdouble * values = new GLdouble[len];
+			if (values){
+				glGetDoublev(pname, values);
+				setArray<double>(state, static_cast<double *>(values), len);
+				delete[] values;
+				return 1;
+			}}
+			break;
+		case 'b':
+			{GLboolean * values = new GLboolean[len];
+			if (values){
+				glGetBooleanv(pname, values);
+				setArray<bool>(state, reinterpret_cast<bool *>(values), len);
+				delete[] values;
+				return 1;
+			}}
+			break;
+		}
+		return 0;
+	}
+
 	int gl_GetBufferSubData(lutok::state& state){
 		size_t count = state.to_integer(3);
 		unsigned char * buffer = new unsigned char[count];

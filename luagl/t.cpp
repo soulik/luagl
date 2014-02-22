@@ -5,6 +5,10 @@ namespace GLex {
 		glTexCoord2f((GLfloat) state.to_number(1), (GLfloat) state.to_number(2));
 		return 0;
 	}
+	int gl_TexCoord3f(lutok::state& state){
+		glTexCoord3f((GLfloat) state.to_number(1), (GLfloat) state.to_number(2), (GLfloat) state.to_number(3));
+		return 0;
+	}
 	int gl_TexParameteri(lutok::state& state){
 		glTexParameteri((GLuint) state.to_integer(1), (GLuint) state.to_integer(2), (GLint) state.to_integer(3));
 		return 0;

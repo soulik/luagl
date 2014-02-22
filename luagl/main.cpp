@@ -185,6 +185,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["GenLists"] = gl_GenLists;
 	module["GenTextures"] = gl_GenTextures;
 	module["Get"] = gl_Get;
+	module["GetEx"] = gl_GetEx;
 	module["GetBufferParameter"] = gl_GetBufferParameter;
 	module["GetClipPlane"] = gl_GetClipPlane;
 	module["GetError"] = gl_GetError;
@@ -325,6 +326,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["TessProperty"] = glu_TessProperty;
 	module["TessVertex"] = glu_TessVertex;
 	module["TexCoord2f"] = gl_TexCoord2f;
+	module["TexCoord3f"] = gl_TexCoord3f;
 	module["TexCoordPointer"] = gl_TexCoordPointer;
 	module["TexParameteri"] = gl_TexParameteri;
 	module["TexEnvf"] = gl_TexEnvf;
