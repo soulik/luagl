@@ -162,17 +162,11 @@ namespace GLex {
 		vector<unsigned int> _data;
 		size_t count=0;
 
-		if (state.is_number(1)){
-			data = (GLuint *) state.to_integer(1);
-		}else{
-			if (state.is_table(1)){
-				count = getArray<unsigned int>(state, 1, _data);
-				data = _data.data();
-			}else{
-				data = NULL;
-			}
+		if (state.is_table(1)){
+			count = getArray<unsigned int>(state, 1, _data);
+			data = _data.data();
+			glDrawBuffers(count, data);
 		}
-		glDrawBuffers(count, data);
 		return 0;
 	}
 	int gl_DrawElements(lutok::state& state){
