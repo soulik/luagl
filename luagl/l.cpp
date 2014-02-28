@@ -65,18 +65,22 @@ namespace GLex {
 		GLdouble * data;
 		vector<double> _data;
 
-		if (state.is_number(3)){
-			data = (GLdouble *) state.to_integer(3);
-		}else{
-			if (state.is_table(3)){
-				getArray<double>(state, 3, _data, 0, 16);
-				data = _data.data();
-			}else{
-				data = NULL;
-			}
+		if (state.is_table(1) && state.obj_len(1) >= 16){
+			getArray<double>(state, 1, _data, 0, 16);
+			data = _data.data();
+			glLoadMatrixd((const GLdouble *) data);
 		}
+		return 0;
+	}
+	int gl_LoadTransposeMatrix(lutok::state& state){
+		GLdouble * data;
+		vector<double> _data;
 
-		glLoadMatrixd((const GLdouble *) data);
+		if (state.is_table(1) && state.obj_len(1) >= 16){
+			getArray<double>(state, 1, _data, 0, 16);
+			data = _data.data();
+			glLoadTransposeMatrixd((const GLdouble *) data);
+		}
 		return 0;
 	}
 	int gl_LoadName(lutok::state& state){

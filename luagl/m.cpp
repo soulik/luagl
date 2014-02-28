@@ -47,18 +47,24 @@ namespace GLex {
 		GLdouble * data;
 		vector<double> _data;
 
-		if (state.is_number(3)){
-			data = (GLdouble *) state.to_integer(3);
-		}else{
-			if (state.is_table(3)){
-				getArray<double>(state, 3, _data, 0, 16);
-				data = _data.data();
-			}else{
-				data = NULL;
-			}
+		if (state.is_table(1) && state.obj_len(1) >= 16){
+			getArray<double>(state, 1, _data, 0, 16);
+			data = _data.data();
+			glMultMatrixd(data);
 		}
 
-		glMultMatrixd(data);
+		return 0;
+	}
+	int gl_MultTransposeMatrix(lutok::state& state){
+		GLdouble * data;
+		vector<double> _data;
+
+		if (state.is_table(1) && state.obj_len(1) >= 16){
+			getArray<double>(state, 1, _data, 0, 16);
+			data = _data.data();
+			glMultTransposeMatrixd(data);
+		}
+
 		return 0;
 	}
 	int gl_MultitexCoord2f(lutok::state& state){

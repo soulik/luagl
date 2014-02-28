@@ -6,7 +6,27 @@ namespace GLex {
 		return 0;
 	}
 	int gl_EdgeFlagPointer(lutok::state& state){
-		//__RENDER->dprintf("Stub(%s)","glEdgeFlagPointer()");
+		if (state.is_number(1)){
+			GLint size = 0;
+			GLint nsize = state.to_integer(1);
+			GLboolean * data;
+			vector<unsigned char> _data;
+
+			if (state.is_number(2)){
+				data = (GLboolean *) state.to_integer(2);
+			}else{
+				if (state.is_table(2)){
+					size = getArray<unsigned char>(state, 2, _data);
+					data = static_cast<GLboolean*>(_data.data());
+				}else{
+					data = NULL;
+				}
+			}
+			if ((data && (nsize<=size)) || (nsize>=1 && nsize <= 4)){
+				/* call opengl function */
+				glEdgeFlagPointer(0, data);
+			}
+		}
 		return 0;
 	}
 	int gl_Enable(lutok::state& state){

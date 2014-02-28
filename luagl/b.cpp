@@ -53,11 +53,15 @@ namespace GLex {
 		return 0;
 	}
 	int gl_BlendColor(lutok::state& state){
-		//__RENDER->dprintf("Stub(%s)","glBlendColor()");
+		glBlendColor((GLfloat)state.to_number(1),(GLfloat)state.to_number(2),(GLfloat)state.to_number(3),(GLfloat)state.to_number(4));
 		return 0;
 	}
 	int gl_BlendFunc(lutok::state& state){
 		glBlendFunc((GLuint)state.to_integer(1), (GLuint)state.to_integer(2));
+		return 0;
+	}
+	int gl_BlendEquation(lutok::state& state){
+		glBlendEquation((GLuint)state.to_integer(1));
 		return 0;
 	}
 	int gl_BufferData(lutok::state& state){
@@ -78,7 +82,8 @@ namespace GLex {
 			}
 		}
 		GLenum usage = state.to_integer(3);
-		glBufferData(target, size * sizeof(GLfloat), data, usage);
+		GLsizeiptr data_size = size * sizeof(GLfloat);
+		glBufferData(target, data_size, data, usage);
 		return 0;
 	}
 
@@ -99,8 +104,9 @@ namespace GLex {
 				data = NULL;
 			}
 		}
-
-		glBufferSubData(target, offset * sizeof(GLfloat), size * sizeof(GLfloat), data);
+		GLintptr data_offset = offset * sizeof(GLfloat);
+		GLsizeiptr data_size = size * sizeof(GLfloat);
+		glBufferSubData(target, data_offset, data_size, data);
 		return 0;
 	}
 	int glu_Build1DMipmaps(lutok::state& state){

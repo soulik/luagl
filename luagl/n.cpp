@@ -30,6 +30,27 @@ namespace GLex {
 		return 0;
 	}
 	int gl_NormalPointer(lutok::state& state){
+		if (state.is_number(1)){
+			GLint size = 0;
+			GLint nsize = state.to_integer(1);
+			GLfloat * data;
+			vector<float> _data;
+
+			if (state.is_number(2)){
+				data = (GLfloat *) state.to_integer(2);
+			}else{
+				if (state.is_table(2)){
+					size = getArray<float>(state, 2, _data);
+					data = _data.data();
+				}else{
+					data = NULL;
+				}
+			}
+			if ((data && (nsize<=size)) || (nsize>=1 && nsize <= 4)){
+				/* call opengl function */
+				glNormalPointer(GL_FLOAT, 0, data);
+			}
+		}
 		return 0;
 	}
 

@@ -95,7 +95,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["BindTexture"] = gl_BindTexture;
 	module["BindAttribLocation"] = gl_BindAttribLocation;
 	module["Bitmap"] = gl_Bitmap;
-	module["BlendColorEXT"] = gl_BlendColor;
+	module["BlendColor"] = gl_BlendColor;
+	module["BlendEquation"] = gl_BlendEquation;
 	module["BlendFunc"] = gl_BlendFunc;
 	module["BufferData"] = gl_BufferData;
 	module["BufferSubData"] = gl_BufferSubData;
@@ -141,6 +142,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["DeleteFrameBuffers"] = gl_DeleteFrameBuffers;
 	module["DeleteLists"] = gl_DeleteLists;
 	module["DeleteProgram"] = gl_DeleteProgram;
+	module["DeleteQuadric"] = glu_DeleteQuadric;
 	module["DeleteShader"] = gl_DeleteShader;
 	module["DeleteVertexArrays"] = gl_DeleteVertexArrays;
 	module["DeleteTextures"] = gl_DeleteTextures;
@@ -173,6 +175,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["Finish"] = gl_Finish;
 	module["Flush"] = gl_Flush;
 	module["Fog"] = gl_Fog;
+	module["FogCoordPointer"] = gl_FogCoordPointer;
 	module["FramebufferTexture2D"] = gl_FramebufferTexture2D;
 	module["FrontFace"] = gl_FrontFace;
 	module["Frustum"] = gl_Frustum;
@@ -232,6 +235,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["ListBase"] = gl_ListBase;
 	module["LoadIdentity"] = gl_LoadIdentity;
 	module["LoadMatrix"] = gl_LoadMatrix;
+	module["LoadTransposeMatrix"] = gl_LoadTransposeMatrix;
 	module["LoadName"] = gl_LoadName;
 	module["LoadSamplingMatrices"] = glu_LoadSamplingMatrices;
 	module["LookAt"] = glu_LookAt;
@@ -244,6 +248,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["Materialfv"] = gl_Materialfv;
 	module["MatrixMode"] = gl_MatrixMode;
 	module["MultMatrix"] = gl_MultMatrix;
+	module["MultTransposeMatrix"] = gl_MultTransposeMatrix;
 	module["MultitexCoord2f"] = gl_MultitexCoord2f;
 	//---------------------------
 	module["NewList"] = gl_NewList;

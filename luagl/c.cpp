@@ -122,23 +122,27 @@ namespace GLex {
 		return 0;
 	}
 	int gl_ColorPointer(lutok::state& state){
-		GLint size = 0;
-		GLdouble * data;
-		vector<double> _data;
-
 		if (state.is_number(1)){
-			data = (GLdouble *) state.to_integer(1);
-		}else{
-			if (state.is_table(1)){
-				size = getArray<double>(state, 1, _data);
-				data = _data.data();
+			GLint size = 0;
+			GLint nsize = state.to_integer(1);
+			GLfloat * data;
+			vector<float> _data;
+
+			if (state.is_number(2)){
+				data = (GLfloat *) state.to_integer(2);
 			}else{
-				data = NULL;
+				if (state.is_table(2)){
+					size = getArray<float>(state, 2, _data);
+					data = _data.data();
+				}else{
+					data = NULL;
+				}
+			}
+			if ((data && (nsize<=size)) || (nsize>=1 && nsize <= 4)){
+				/* call opengl function */
+				glColorPointer(nsize, GL_FLOAT, 0, data);
 			}
 		}
-
-		/* call opengl function */
-		glColorPointer(size, GL_DOUBLE, 0, data);
 		return 0;
 	}
 	int gl_CompileShader(lutok::state& state){
@@ -149,18 +153,54 @@ namespace GLex {
 		glCopyPixels((GLint)state.to_integer(1),(GLint)state.to_integer(2),(GLsizei)state.to_integer(3),(GLsizei)state.to_integer(4),(GLenum)state.to_integer(5));
 		return 0;
 	}
+	/*
+		CopyTexImage1D(target, level, internalFormat, x, y, width, border)
+	*/
 	int gl_CopyTexImage1D(lutok::state& state){
-		glCopyTexImage1D(GL_TEXTURE_1D,(GLint)state.to_integer(1),(GLenum)state.to_integer(2),(GLint)state.to_integer(3),(GLint)state.to_integer(4),(GLsizei)state.to_integer(5),(GLint)state.to_integer(6));
+		glCopyTexImage1D(
+			(GLenum)state.to_integer(1),
+			(GLint)state.to_integer(2),
+			(GLenum)state.to_integer(3),
+			(GLint)state.to_integer(4),
+			(GLint)state.to_integer(5),
+			(GLsizei)state.to_integer(6),
+			(GLint)state.to_integer(7)
+		);
 		return 0;
 	}
+	/*
+		CopyTexImage1D(target, level, internalFormat, x, y, width, height, border)
+	*/
 	int gl_CopyTexImage2D(lutok::state& state){
-		glCopyTexImage2D(GL_TEXTURE_2D,(GLint)state.to_integer(1),(GLenum)state.to_integer(2),(GLint)state.to_integer(3),(GLint)state.to_integer(4),(GLsizei)state.to_integer(5),(GLsizei)state.to_integer(6),(GLint)state.to_integer(7));
+		glCopyTexImage2D(
+			(GLenum)state.to_integer(1),
+			(GLint)state.to_integer(2),
+			(GLenum)state.to_integer(3),
+			(GLint)state.to_integer(4),
+			(GLint)state.to_integer(5),
+			(GLsizei)state.to_integer(6),
+			(GLsizei)state.to_integer(7),
+			(GLint)state.to_integer(8)
+		);
 		return 0;
 	}
+	/*
+		CopyTexSubImage1D(target, level, offset, x, y, width)
+	*/
 	int gl_CopyTexSubImage1D(lutok::state& state){
-		glCopyTexSubImage1D(GL_TEXTURE_1D,(GLint)state.to_integer(1),(GLint)state.to_integer(2),(GLint)state.to_integer(3),(GLsizei)state.to_integer(4),(GLsizei)state.to_integer(5));
+		glCopyTexSubImage1D(
+			(GLenum)state.to_integer(1),
+			(GLint)state.to_integer(2),
+			(GLint)state.to_integer(3),
+			(GLint)state.to_integer(4),
+			(GLsizei)state.to_integer(5),
+			(GLsizei)state.to_integer(6)
+		);
 		return 0;
 	}
+	/*
+		CopyTexSubImage2D(target, level, x_offset, y_offset, x, y, width, height)
+	*/
 	int gl_CopyTexSubImage2D(lutok::state& state){
 		glCopyTexSubImage2D(
 			(GLenum)state.to_integer(1),//target
@@ -173,6 +213,9 @@ namespace GLex {
 			(GLsizei)state.to_integer(8));//height
 		return 0;
 	}
+	/*
+		CopyTexSubImage3D(target, level, x_offset, y_offset, z_offset, x, y, width, height)
+	*/
 	int gl_CopyTexSubImage3D(lutok::state& state){
 		glCopyTexSubImage3D(
 			(GLenum)state.to_integer(1), //target

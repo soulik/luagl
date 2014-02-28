@@ -67,6 +67,13 @@ namespace GLex {
 		glDeleteProgram((GLenum)state.to_integer(1));
 		return 0;
 	}
+	int glu_DeleteQuadric(lutok::state& state){
+		if (state.is_userdata(1)){
+			GLUquadric * q = (GLUquadric *)state.to_lightuserdata(1);
+			gluDeleteQuadric((GLUquadric*)q);
+		}
+		return 0;
+	}
 	int gl_DeleteShader(lutok::state& state){
 		glDeleteShader((GLenum)state.to_integer(1));
 		return 0;
@@ -122,7 +129,10 @@ namespace GLex {
 
 	int gl_DrawArrays(lutok::state& state){
 		//__RENDER->dprintf("Stub(%s)","glDrawArrays()");
-		glDrawArrays((GLenum) state.to_integer(1), (GLint)state.to_integer(2), (GLsizei) state.to_integer(3));
+		GLenum mode = state.to_integer(1);
+		GLint first = state.to_integer(2);
+		GLsizei count = state.to_integer(3);
+		glDrawArrays((GLenum) mode, (GLint) first, (GLsizei) count);
 		return 0;
 	}
 	int gl_DrawBuffer(lutok::state& state){

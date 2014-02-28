@@ -14,21 +14,26 @@ namespace GLex {
 		return 0;
 	}
 	int gl_VertexPointer(lutok::state& state){
-		GLint size = 0;
-		GLdouble * data;
-		vector<double> _data;
-
 		if (state.is_number(1)){
-			data = (GLdouble *) state.to_integer(1);
-		}else{
-			if (state.is_table(1)){
-				size = getArray<double>(state, 1, _data);
-				data = _data.data();
+			GLint size = 0;
+			GLint nsize = state.to_integer(1);
+			GLfloat * data;
+			vector<float> _data;
+
+			if (state.is_number(2)){
+				data = (GLfloat *) state.to_integer(2);
 			}else{
-				data = NULL;
+				if (state.is_table(2)){
+					size = getArray<float>(state, 2, _data);
+					data = _data.data();
+				}else{
+					data = NULL;
+				}
+			}
+			if ((data && (nsize<=size)) || (nsize>=1 && nsize <= 4)){
+				glVertexPointer(nsize, GL_FLOAT, 0, data);
 			}
 		}
-		glVertexPointer(size, GL_DOUBLE, 0, data);
 		return 0;
 	}
 
