@@ -98,6 +98,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["BlendColor"] = gl_BlendColor;
 	module["BlendEquation"] = gl_BlendEquation;
 	module["BlendFunc"] = gl_BlendFunc;
+	module["BlitFramebuffer"] = gl_BlitFramebuffer;
 	module["BufferData"] = gl_BufferData;
 	module["BufferSubData"] = gl_BufferSubData;
 	module["Build1DMipmaps"] = glu_Build1DMipmaps;
@@ -143,6 +144,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["DeleteLists"] = gl_DeleteLists;
 	module["DeleteProgram"] = gl_DeleteProgram;
 	module["DeleteQuadric"] = glu_DeleteQuadric;
+	module["DeleteRenderBuffers"] = gl_DeleteRenderBuffers;
 	module["DeleteShader"] = gl_DeleteShader;
 	module["DeleteVertexArrays"] = gl_DeleteVertexArrays;
 	module["DeleteTextures"] = gl_DeleteTextures;
@@ -156,6 +158,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["DisableVertexArray"] = gl_DisableVertexArray;
 	module["DrawArrays"] = gl_DrawArrays;
 	module["DrawBuffer"] = gl_DrawBuffer;
+	module["DrawBuffers"] = gl_DrawBuffers;
 	module["DrawElements"] = gl_DrawElements;
 	module["DrawPixels"] = gl_DrawPixels;
 	//---------------------------
@@ -176,22 +179,30 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["Flush"] = gl_Flush;
 	module["Fog"] = gl_Fog;
 	module["FogCoordPointer"] = gl_FogCoordPointer;
+	module["FramebufferParameter"] = gl_FramebufferParameter;
+	module["FramebufferRenderbuffer"] = gl_FramebufferRenderbuffer;
+	module["FramebufferTexture"] = gl_FramebufferTexture;
+	module["FramebufferTexture1D"] = gl_FramebufferTexture1D;
 	module["FramebufferTexture2D"] = gl_FramebufferTexture2D;
+	module["FramebufferTexture3D"] = gl_FramebufferTexture3D;
+	module["FramebufferTextureLayer"] = gl_FramebufferTextureLayer;
 	module["FrontFace"] = gl_FrontFace;
 	module["Frustum"] = gl_Frustum;
 	//---------------------------
 	module["GenBuffers"] = gl_GenBuffers;
 	module["GetBufferSubData"] = gl_GetBufferSubData;
 	module["GenFrameBuffers"] = gl_GenFrameBuffers;
-	module["GenVertexArrays"] = gl_GenVertexArrays;
-	module["GetLastError"] = get_last_error;
 	module["GenLists"] = gl_GenLists;
+	module["GenRenderBuffers"] = gl_GenRenderBuffers;
+	module["GenVertexArrays"] = gl_GenVertexArrays;
 	module["GenTextures"] = gl_GenTextures;
 	module["Get"] = gl_Get;
 	module["GetEx"] = gl_GetEx;
 	module["GetBufferParameter"] = gl_GetBufferParameter;
 	module["GetClipPlane"] = gl_GetClipPlane;
 	module["GetError"] = gl_GetError;
+	module["GetFramebufferAttachmentParameter"] = gl_GetFramebufferAttachmentParameter;
+	module["GetLastError"] = get_last_error;
 	module["GetLight"] = gl_GetLight;
 	module["GetMap"] = gl_GetMap;
 	module["GetMaterial"] = gl_GetMaterial;
@@ -309,6 +320,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["ReadPixel"] = gl_ReadPixel;
 	module["Rect"] = gl_Rect;
 	module["RenderMode"] = gl_RenderMode;
+	module["RenderBufferStorage"] = gl_RenderBufferStorage;
 	module["Rotatef"] = gl_Rotatef;
 	//---------------------------
 	module["Scalef"] = gl_Scalef;

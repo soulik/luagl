@@ -41,6 +41,24 @@ namespace GLex {
 		glDeleteFramebuffers(count,data);
 		return 0;
 	}
+	int gl_DeleteRenderBuffers(lutok::state& state){
+		const GLuint * data;
+		vector<unsigned int> _data;
+		size_t count=0;
+
+		if (state.is_number(1)){
+			data = (GLuint *) state.to_integer(1);
+		}else{
+			if (state.is_table(1)){
+				count = getArray<unsigned int>(state, 1, _data);
+				data = _data.data();
+			}else{
+				data = NULL;
+			}
+		}
+		glDeleteRenderbuffers(count,data);
+		return 0;
+	}
 	int gl_DeleteVertexArrays(lutok::state& state){
 		const GLuint * data;
 		vector<unsigned int> _data;
@@ -136,8 +154,25 @@ namespace GLex {
 		return 0;
 	}
 	int gl_DrawBuffer(lutok::state& state){
-		//__RENDER->dprintf("Stub(%s)","glDrawBuffer()");
 		glDrawBuffer((GLenum)state.to_integer(1));
+		return 0;
+	}
+	int gl_DrawBuffers(lutok::state& state){
+		const GLenum * data;
+		vector<unsigned int> _data;
+		size_t count=0;
+
+		if (state.is_number(1)){
+			data = (GLuint *) state.to_integer(1);
+		}else{
+			if (state.is_table(1)){
+				count = getArray<unsigned int>(state, 1, _data);
+				data = _data.data();
+			}else{
+				data = NULL;
+			}
+		}
+		glDrawBuffers(count, data);
 		return 0;
 	}
 	int gl_DrawElements(lutok::state& state){

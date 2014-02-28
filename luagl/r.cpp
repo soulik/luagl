@@ -9,6 +9,7 @@ namespace GLex {
 		return 0;
 	}
 	int gl_ReadBuffer(lutok::state& state){
+		glReadBuffer((GLenum) state.to_integer(1));
 		return 0;
 	}
 	int gl_ReadPixels(lutok::state& state){
@@ -82,6 +83,18 @@ namespace GLex {
 		GLint result = glRenderMode((GLenum) state.to_integer(1));
 		state.push_integer(result);
 		return 1;
+	}
+	/*
+		RenderBufferStorage(target, internal_format, width, height)
+	*/
+	int gl_RenderBufferStorage(lutok::state& state){
+		 glRenderbufferStorage(
+			 (GLenum) state.to_integer(1),
+			 (GLenum) state.to_integer(2),
+			 (GLsizei) state.to_integer(3),
+			 (GLsizei) state.to_integer(4)
+		);
+		return 0;
 	}
 
 }

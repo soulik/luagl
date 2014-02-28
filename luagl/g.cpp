@@ -2,70 +2,64 @@
 
 namespace GLex {
 	int gl_GenBuffers(lutok::state& state){
-		state.new_table();
 		GLsizei count = (GLsizei)state.to_integer(1);
 		if (count > 0){
 			GLuint * buffers = new GLuint[count];
 			glGenBuffers(count, buffers);
-			for (int i=0; i <count; i++){
-				state.push_integer(i+1);
-				state.push_integer(buffers[i]);
-				state.set_table();
-			}
+			setArray<unsigned int>(state, buffers, count);
 			delete[] buffers;
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
 	int gl_GenFrameBuffers(lutok::state& state){
-		state.new_table();
 		GLsizei count = (GLsizei)state.to_integer(1);
 		if (count > 0){
 			GLuint * buffers = new GLuint[count];
 			glGenFramebuffers(count, buffers);
-			for (int i=0; i <count; i++){
-				state.push_integer(i+1);
-				state.push_integer(buffers[i]);
-				state.set_table();
-			}
+			setArray<unsigned int>(state, buffers, count);
 			delete[] buffers;
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
-
+	int gl_GenRenderBuffers(lutok::state& state){
+		GLsizei count = (GLsizei)state.to_integer(1);
+		if (count > 0){
+			GLuint * buffers = new GLuint[count];
+			glGenRenderbuffers(count, buffers);
+			setArray<unsigned int>(state, buffers, count);
+			delete[] buffers;
+			return 1;
+		}
+		return 0;
+	}
 	int gl_GenLists(lutok::state& state){
 		GLuint ret = glGenLists((GLsizei) state.to_integer(1));
 		state.push_integer(ret);
 		return 1;
 	}
 	int gl_GenTextures(lutok::state& state){
-		state.new_table();
 		GLsizei count = (GLsizei)state.to_integer(1);
 		if (count > 0){
 			GLuint * tex = new GLuint[count];
 			glGenTextures(count, tex);
-			for (int i=0; i <count; i++){
-				state.push_integer(i+1);
-				state.push_integer(tex[i]);
-				state.set_table();
-			}
+			setArray<unsigned int>(state, tex, count);
 			delete[] tex;
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
 	int gl_GenVertexArrays(lutok::state& state){
-		state.new_table();
 		GLsizei count = (GLsizei)state.to_integer(1);
 		if (count > 0){
 			GLuint * buffers = new GLuint[count];
 			glGenVertexArrays(count, buffers);
-			for (int i=0; i <count; i++){
-				state.push_integer(i+1);
-				state.push_integer(buffers[i]);
-				state.set_table();
-			}
+			setArray<unsigned int>(state, buffers, count);
 			delete[] buffers;
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
 	/*
 		gl.Get(format, enum)
@@ -193,6 +187,21 @@ namespace GLex {
 		GLint result = 0;
 		glGetBufferParameteriv((GLenum) state.to_integer(1), (GLenum) state.to_integer(2), &result);
 		state.push_integer(result);
+		return 1;
+	}
+	/*
+		GetFramebufferAttachmentParameter(target, attachment, parameter_name)
+	*/
+	int gl_GetFramebufferAttachmentParameter(lutok::state& state){
+		GLint parameters;
+
+		glGetFramebufferAttachmentParameteriv(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLenum) state.to_integer(3),
+			&parameters
+		);
+		state.push_integer(parameters);
 		return 1;
 	}
 	int gl_GetClipPlane(lutok::state& state){

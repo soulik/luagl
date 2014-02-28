@@ -64,6 +64,24 @@ namespace GLex {
 		glBlendEquation((GLuint)state.to_integer(1));
 		return 0;
 	}
+	/*
+		BlitFramebuffer(src_X0, src_Y0, src_X1, src_Y1, dest_X0, dest_Y0, dest_X1, dest_Y1, mask, filter)
+	*/
+	int gl_BlitFramebuffer (lutok::state& state){
+		glBlitFramebuffer(
+			(GLint) state.to_integer(1),
+			(GLint) state.to_integer(2),
+			(GLint) state.to_integer(3),
+			(GLint) state.to_integer(4),
+			(GLint) state.to_integer(5),
+			(GLint) state.to_integer(6),
+			(GLint) state.to_integer(7),
+			(GLint) state.to_integer(8),
+			(GLbitfield) state.to_integer(9),
+			(GLenum) state.to_integer(10)
+		);
+		return 0;
+	}
 	int gl_BufferData(lutok::state& state){
 		GLenum target = state.to_integer(1);
 		GLsizei size = 0;

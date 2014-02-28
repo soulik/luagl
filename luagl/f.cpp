@@ -42,20 +42,92 @@ namespace GLex {
 		}
 		return 0;
 	}
-	int gl_FramebufferTexture2D(lutok::state& state){
-		GLint level = 0;
-		if (state.is_number(4)){
-			level = state.to_integer(4);
-		}
-		glFramebufferTexture2D(GL_FRAMEBUFFER, (GLenum) state.to_integer(1), (GLenum) state.to_integer(2), (GLuint) state.to_integer(3), (GLint) level);
+	/*
+		FramebufferParameter(target, name, value)
+	*/
+	int gl_FramebufferParameter(lutok::state& state){
+		glFramebufferParameteri(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLint) state.to_integer(3)
+		);
 		return 0;
 	}
+	/*
+		FramebufferParameter(target, attachment, renderbuffer_target, renderbuffer)
+	*/
+	int gl_FramebufferRenderbuffer(lutok::state& state){
+		glFramebufferRenderbuffer(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLenum) state.to_integer(3),
+			(GLuint) state.to_integer(4)
+		);
+		return 0;
+	}
+	/*
+		FramebufferTexture(target, attachment, texture, level)
+	*/
+	int gl_FramebufferTexture(lutok::state& state){
+		glFramebufferTexture(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLuint) state.to_integer(3),
+			(GLint) state.to_integer(4)
+		);
+		return 0;
+	}
+	/*
+		FramebufferTexture1D(target, attachment, texture_target, texture, level)
+	*/
+	int gl_FramebufferTexture1D(lutok::state& state){
+		glFramebufferTexture1D(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLenum) state.to_integer(3),
+			(GLuint) state.to_integer(4),
+			(GLint) state.to_integer(5)
+		);
+		return 0;
+	}
+	/*
+		FramebufferTexture2D(target, attachment, texture_target, texture, level)
+	*/
+	int gl_FramebufferTexture2D(lutok::state& state){
+		glFramebufferTexture2D(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLenum) state.to_integer(3),
+			(GLuint) state.to_integer(4),
+			(GLint) state.to_integer(5)
+		);
+		return 0;
+	}
+	/*
+		FramebufferTexture3D(target, attachment, texture_target, texture, level, layer)
+	*/
 	int gl_FramebufferTexture3D(lutok::state& state){
-		GLint level = 0;
-		if (state.is_number(4)){
-			level = state.to_integer(4);
-		}
-		glFramebufferTexture3D(GL_FRAMEBUFFER, (GLenum) state.to_integer(1), (GLenum) state.to_integer(2), (GLuint) state.to_integer(3), (GLint) level, (GLint) state.to_integer(4));
+		glFramebufferTexture3D(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLenum) state.to_integer(3),
+			(GLuint) state.to_integer(4),
+			(GLint) state.to_integer(5),
+			(GLint) state.to_integer(6)
+		);
+		return 0;
+	}
+	/*
+		FramebufferTextureLayer(target, attachment, texture, level, layer)
+	*/
+	int gl_FramebufferTextureLayer(lutok::state& state){
+		glFramebufferTextureLayer(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLuint) state.to_integer(3),
+			(GLint) state.to_integer(4),
+			(GLint) state.to_integer(5)
+			);
 		return 0;
 	}
 	int gl_FrontFace(lutok::state& state){
