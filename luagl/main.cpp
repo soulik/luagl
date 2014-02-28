@@ -90,7 +90,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["BeginSurface"] = gl_BeginSurface;
 	module["BeginTrim"] = gl_BeginTrim;
 	module["BindBuffer"] = gl_BindBuffer;
-	module["BindFrameBuffer"] = gl_BindFrameBuffer;
+	module["BindFramebuffer"] = gl_BindFrameBuffer;
+	module["BindRenderbuffer"] = gl_BindRenderBuffer;
 	module["BindVertexArray"] = gl_BindVertexArray;
 	module["BindTexture"] = gl_BindTexture;
 	module["BindAttribLocation"] = gl_BindAttribLocation;
@@ -129,6 +130,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["ColorMaterial"] = gl_ColorMaterial;
 	module["ColorPointer"] = gl_ColorPointer;
 	module["CompileShader"] = gl_CompileShader;
+	module["CopyBufferSubData"] = gl_CopyBufferSubData;
+	module["CopyImageSubData"] = gl_CopyImageSubData;
 	module["CopyPixels"] = gl_CopyPixels;
 	module["CopyTexImage1D"] = gl_CopyTexImage1D;
 	module["CopyTexImage2D"] = gl_CopyTexImage2D;
@@ -140,11 +143,11 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["CullFace"] = gl_CullFace;
 	//---------------------------
 	module["DeleteBuffers"] = gl_DeleteBuffers;
-	module["DeleteFrameBuffers"] = gl_DeleteFrameBuffers;
+	module["DeleteFramebuffers"] = gl_DeleteFrameBuffers;
 	module["DeleteLists"] = gl_DeleteLists;
 	module["DeleteProgram"] = gl_DeleteProgram;
 	module["DeleteQuadric"] = glu_DeleteQuadric;
-	module["DeleteRenderBuffers"] = gl_DeleteRenderBuffers;
+	module["DeleteRenderbuffers"] = gl_DeleteRenderBuffers;
 	module["DeleteShader"] = gl_DeleteShader;
 	module["DeleteVertexArrays"] = gl_DeleteVertexArrays;
 	module["DeleteTextures"] = gl_DeleteTextures;
@@ -320,7 +323,7 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["ReadPixel"] = gl_ReadPixel;
 	module["Rect"] = gl_Rect;
 	module["RenderMode"] = gl_RenderMode;
-	module["RenderBufferStorage"] = gl_RenderBufferStorage;
+	module["RenderbufferStorage"] = gl_RenderBufferStorage;
 	module["Rotatef"] = gl_Rotatef;
 	//---------------------------
 	module["Scalef"] = gl_Scalef;

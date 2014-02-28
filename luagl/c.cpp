@@ -229,6 +229,42 @@ namespace GLex {
 			(GLuint)state.to_integer(9)); //height
 		return 0;
 	}
+	/*
+		CopyBufferSubData(read_target, write_target, read_offset, write_offset, size)
+	*/
+	int gl_CopyBufferSubData(lutok::state& state){
+		glCopyBufferSubData(
+			(GLenum)state.to_integer(1),
+			(GLenum)state.to_integer(2),
+			(GLintptr)state.to_integer(3),
+			(GLintptr)state.to_integer(4),
+			(GLsizeiptr)state.to_integer(5)
+		);
+		return 0;
+	}
+	/*
+		CopyImageSubData(src_name, src_target, src_level, src_x, src_y, src_z, dest_nam, dest_target, dest_level, dest_x, dest_y, dest_z, src_width, src_height, src_depth)
+	*/
+	int gl_CopyImageSubData(lutok::state& state){
+		glCopyImageSubData(
+			(GLuint)state.to_integer(1),
+			(GLenum)state.to_integer(2),
+			(GLint)state.to_integer(3),
+			(GLint)state.to_integer(4),
+			(GLint)state.to_integer(5),
+			(GLint)state.to_integer(6),
+			(GLuint)state.to_integer(7),
+			(GLenum)state.to_integer(8),
+			(GLint)state.to_integer(9),
+			(GLint)state.to_integer(10),
+			(GLint)state.to_integer(11),
+			(GLint)state.to_integer(12),
+			(GLsizei)state.to_integer(13),
+			(GLsizei)state.to_integer(14),
+			(GLsizei)state.to_integer(15)
+		);
+		return 0;
+	}
 	int gl_CreateProgram(lutok::state& state){
 		int result = glCreateProgram();
 		state.push_integer(result);

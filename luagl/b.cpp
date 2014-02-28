@@ -35,6 +35,12 @@ namespace GLex {
 		glBindBuffer(target, buffer);
 		return 0;
 	}
+	int gl_BindRenderBuffer(lutok::state& state){
+		GLenum target = state.to_integer(1);
+		GLuint buffer = state.to_integer(2);
+		glBindRenderbuffer(target, buffer);
+		return 0;
+	}
 	int gl_BindFrameBuffer(lutok::state& state){
 		glBindFramebuffer(state.to_integer(1), state.to_integer(2));
 		return 0;
