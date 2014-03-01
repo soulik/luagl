@@ -266,6 +266,8 @@ GL_DEF_FN(glu_TessEndPolygon);
 GL_DEF_FN(glu_TessNormal);
 GL_DEF_FN(glu_TessProperty);
 GL_DEF_FN(glu_TessVertex);
+GL_DEF_FN(gl_TexBuffer);
+GL_DEF_FN(gl_TexBufferRange);
 GL_DEF_FN(gl_TexCoord2f);
 GL_DEF_FN(gl_TexCoord3f);
 GL_DEF_FN(gl_TexCoordPointer);

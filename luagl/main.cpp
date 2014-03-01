@@ -345,6 +345,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["TessNormal"] = glu_TessNormal;
 	module["TessProperty"] = glu_TessProperty;
 	module["TessVertex"] = glu_TessVertex;
+	module["TexBuffer"] = gl_TexBuffer;
+	module["TexBufferRange"] = gl_TexBufferRange;
 	module["TexCoord2f"] = gl_TexCoord2f;
 	module["TexCoord3f"] = gl_TexCoord3f;
 	module["TexCoordPointer"] = gl_TexCoordPointer;

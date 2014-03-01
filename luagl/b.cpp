@@ -96,7 +96,8 @@ namespace GLex {
 		vector<float> _data;
 
 		if (state.is_number(2)){
-			data = (GLfloat *) state.to_integer(2);
+			size = (GLsizei) state.to_integer(2);
+			data = NULL;
 		}else{
 			if (state.is_table(2)){
 				size = getArray<float>(state, 2, _data);

@@ -75,6 +75,9 @@ namespace GLex {
 		//glTexGen(
 		return 0;
 	}
+	/*
+		TexImage1D(target, level, internal_format, width, border, format, type, pixels)
+	*/
 	int gl_TexImage1D(lutok::state& state){
 		size_t size = 0;
 		unsigned char * data;
@@ -103,6 +106,9 @@ namespace GLex {
 		);
 		return 0;
 	}
+	/*
+		TexImage2D(target, level, internal_format, width, height, border, format, type, pixels)
+	*/
 	int gl_TexImage2D(lutok::state& state){
 		size_t size = 0;
 		unsigned char * data;
@@ -132,6 +138,9 @@ namespace GLex {
 			);
 		return 0;
 	}
+	/*
+		TexImage3D(target, level, internal_format, width, height, depth, border, format, type, pixels)
+	*/
 	int gl_TexImage3D(lutok::state& state){
 		size_t size = 0;
 		unsigned char * data;
@@ -261,6 +270,25 @@ namespace GLex {
 			(GLenum) GL_UNSIGNED_BYTE,
 			(GLvoid*) data
 			);
+		return 0;
+	}
+
+	int gl_TexBuffer(lutok::state& state){
+		glTexBuffer(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLuint) state.to_integer(3)
+		);
+		return 0;
+	}
+	int gl_TexBufferRange(lutok::state& state){
+		glTexBufferRange(
+			(GLenum) state.to_integer(1),
+			(GLenum) state.to_integer(2),
+			(GLuint) state.to_integer(3),
+			(GLintptr) state.to_integer(4),
+			(GLsizeiptr) state.to_integer(5)
+		);
 		return 0;
 	}
 
