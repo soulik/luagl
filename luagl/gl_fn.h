@@ -145,6 +145,10 @@ GL_DEF_FN(gl_GetTexGen);
 GL_DEF_FN(gl_GetTexImage);
 GL_DEF_FN(gl_GetTexLevelParameter);
 GL_DEF_FN(gl_GetTexParameter);
+GL_DEF_FN(gl_GetUniformi);
+GL_DEF_FN(gl_GetUniformui);
+GL_DEF_FN(gl_GetUniformf);
+GL_DEF_FN(gl_GetUniformd);
 GL_DEF_FN(gl_GetUniformLocation);
 //---------------------------
 GL_DEF_FN(gl_Hint);

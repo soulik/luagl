@@ -298,4 +298,36 @@ namespace GLex {
 		return 1;
 	}
 
+	int gl_GetUniformf(lutok::state & state){
+		GLfloat value[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+		glGetUniformfv((GLuint) state.to_integer(1), (GLint) state.to_integer(2), value);
+		for (int i=0; i<4; i++){
+			state.push_number(value[i]);
+		}
+		return 4;
+	}
+	int gl_GetUniformi(lutok::state & state){
+		GLint value[4] = {0, 0, 0, 0};
+		glGetUniformiv((GLuint) state.to_integer(1), (GLint) state.to_integer(2), value);
+		for (int i=0; i<4; i++){
+			state.push_integer(value[i]);
+		}
+		return 4;
+	}
+	int gl_GetUniformui(lutok::state & state){
+		GLuint value[4] = {0, 0, 0, 0};
+		glGetUniformuiv((GLuint) state.to_integer(1), (GLint) state.to_integer(2), value);
+		for (int i=0; i<4; i++){
+			state.push_integer(value[i]);
+		}
+		return 4;
+	}
+	int gl_GetUniformd(lutok::state & state){
+		GLdouble value[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+		glGetUniformdv((GLuint) state.to_integer(1), (GLint) state.to_integer(2), value);
+		for (int i=0; i<4; i++){
+			state.push_number(value[i]);
+		}
+		return 4;
+	}
 }

@@ -223,6 +223,10 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["GetTexImage"] = gl_GetTexImage;
 	module["GetTexLevelParameter"] = gl_GetTexLevelParameter;
 	module["GetTexParameter"] = gl_GetTexParameter;
+	module["GetUniformi"] = gl_GetUniformi;
+	module["GetUniformui"] = gl_GetUniformui;
+	module["GetUniformf"] = gl_GetUniformf;
+	module["GetUniformd"] = gl_GetUniformd;
 	module["GetUniformLocation"] = gl_GetUniformLocation;
 	//---------------------------
 	module["Hint"] = gl_Hint;
