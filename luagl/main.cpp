@@ -314,6 +314,9 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["PushMatrix"] = gl_PushMatrix;
 	module["PushName"] = gl_PushName;
 	module["PwlCurve"] = glu_PwlCurve;
+	module["ProgramUniformf"] = gl_ProgramUniformf;
+	module["ProgramUniformi"] = gl_ProgramUniformi;
+	module["ProgramUniformMatrix"] = gl_ProgramUniformMatrix;
 	//---------------------------
 	module["QuadricCallback"] = glu_QuadricCallback;
 	module["QuadricDrawStyle"] = glu_QuadricDrawStyle;

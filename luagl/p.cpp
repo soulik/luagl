@@ -106,5 +106,197 @@ namespace GLex {
 		//gluPwlCurve(
 		return 0;
 	}
+	int gl_ProgramUniformf(lutok::state& state){
+		int argc = state.get_top();
+		switch (argc){
+		case 6:
+			glProgramUniform4f(
+				(GLuint) state.to_integer(1),
+				(GLint) state.to_integer(2),
+				(GLfloat) state.to_number(3),
+				(GLfloat) state.to_number(4),
+				(GLfloat) state.to_number(5),
+				(GLfloat) state.to_number(6)
+			);
+			break;
+		case 5:
+			glProgramUniform3f(
+				(GLuint) state.to_integer(1),
+				(GLint) state.to_integer(2),
+				(GLfloat) state.to_number(3),
+				(GLfloat) state.to_number(4),
+				(GLfloat) state.to_number(5)
+			);
+			break;
+		case 4:
+			glProgramUniform2f(
+				(GLuint) state.to_integer(1),
+				(GLint) state.to_integer(2),
+				(GLfloat) state.to_number(3),
+				(GLfloat) state.to_number(4)
+			);
+			break;
+		case 3:
+			if (state.is_table(3)){
+				size_t size = 0;
+				GLfloat * data = nullptr;
+				vector<float> _data;
+
+				size = getArray<float>(state, 3, _data);
+				data = _data.data();
+				glProgramUniform1fv(
+					(GLuint) state.to_integer(1),
+					(GLint) state.to_integer(2),
+					(GLsizei) size,
+					(GLfloat*) data
+				);
+			}else if (state.is_number(3)){
+				GLfloat value = state.to_number(3);
+				glProgramUniform1f(
+					(GLuint) state.to_integer(1),
+					(GLint) state.to_integer(1),
+					(GLfloat) value
+				);
+			}
+			break;
+		default:
+			break;
+		}
+		return 0;
+	}
+	int gl_ProgramUniformi(lutok::state& state){
+		int argc = state.get_top();
+		switch (argc){
+		case 6:
+			glProgramUniform4i(
+				(GLuint) state.to_integer(1),
+				(GLint) state.to_integer(2),
+				(GLint) state.to_integer(3),
+				(GLint) state.to_integer(4),
+				(GLint) state.to_integer(5),
+				(GLint) state.to_integer(6)
+			);
+			break;
+		case 5:
+			glProgramUniform3i(
+				(GLuint) state.to_integer(1),
+				(GLint) state.to_integer(2),
+				(GLint) state.to_integer(3),
+				(GLint) state.to_integer(4),
+				(GLint) state.to_integer(5)
+			);
+			break;
+		case 4:
+			glProgramUniform2i(
+				(GLuint) state.to_integer(1),
+				(GLint) state.to_integer(2),
+				(GLint) state.to_integer(3),
+				(GLint) state.to_integer(4)
+			);
+			break;
+		case 3:
+			if (state.is_table(3)){
+				size_t size = 0;
+				GLint * data;
+				vector<int> _data;
+
+				size = getArray<int>(state, 3, _data);
+				data = _data.data();
+				glProgramUniform1iv(
+					(GLuint) state.to_integer(1),
+					(GLint) state.to_integer(2),
+					(GLsizei) size,
+					(GLint *) data);
+			}else if (state.is_number(3)){
+				glProgramUniform1i(
+					(GLuint) state.to_integer(1),
+					(GLint) state.to_integer(2),
+					(GLint) state.to_integer(3)
+				);
+			}			
+			break;
+		default:
+			break;
+		}
+		return 0;
+	}
+	/*
+		uniformMatrix(program, location, matrixTable, rows, cols, transpose)
+	*/
+	int gl_ProgramUniformMatrix(lutok::state& state){
+		size_t count = 0;
+		size_t size = 0;
+		GLfloat * data = nullptr;
+		vector<float> _data;
+		GLuint programID = state.to_integer(1);
+
+		int rows = state.to_integer(4), cols = state.to_integer(5);
+
+		//supported sizes are: 2x2, 3x3, 4x4, 2x3, 3x2, 2x4, 4x2, 3x4, 4x3
+		if ((rows >= 2) && (cols >= 2) && (rows <= 4) && (cols <= 4) && state.is_table(3)){
+			count = state.obj_len(3);
+			if (count > 0){
+				
+				//is this a table of matrices?
+				state.push_integer(1);
+				state.get_table(3);
+				bool isTable = state.is_table();
+				state.pop(1);
+
+				if (!isTable){
+					count = 1;
+					size = getArray<float>(state, 2, _data);
+					data = new GLfloat[rows * cols];
+					memcpy(data, _data.data(), size * sizeof(float));
+				}else{
+					data = new GLfloat[rows * cols * count];
+					for (size_t i=0; i < count; i++){
+						state.push_integer(i+1);
+						state.get_table(3);
+						size = getArray<float>(state, 3, _data);
+						memcpy(
+							data + (rows * cols * sizeof(GLfloat) * i),
+							_data.data(),
+							size * sizeof(float)
+						);
+						state.pop(1);
+					}
+				}
+
+				GLboolean transpose = false;
+				if (state.is_boolean(6)){
+					transpose = state.to_boolean(6);
+				}
+
+				if (rows == 2){
+					if (cols == 2){
+						glProgramUniformMatrix2fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}else if (cols == 3){
+						glProgramUniformMatrix2x3fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}else{
+						glProgramUniformMatrix2x4fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}
+				}else if (rows == 3){
+					if (cols == 2){
+						glProgramUniformMatrix3x2fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}else if (cols == 3){
+						glProgramUniformMatrix3fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}else{
+						glProgramUniformMatrix3x4fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}
+				}else{
+					if (cols == 2){
+						glProgramUniformMatrix4x2fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}else if (cols == 3){
+						glProgramUniformMatrix4x3fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}else{
+						glProgramUniformMatrix4fv(programID, (GLint) state.to_integer(2), (GLsizei) count, (GLboolean) transpose, (GLfloat *) data);
+					}
+				}
+				delete[] data;
+			}
+		}
+		return 0;
+	}
 
 }

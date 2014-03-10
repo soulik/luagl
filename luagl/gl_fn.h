@@ -235,6 +235,9 @@ GL_DEF_FN(gl_PushClientAttrib);
 GL_DEF_FN(gl_PushMatrix);
 GL_DEF_FN(gl_PushName);
 GL_DEF_FN(glu_PwlCurve);
+GL_DEF_FN(gl_ProgramUniformf);
+GL_DEF_FN(gl_ProgramUniformi);
+GL_DEF_FN(gl_ProgramUniformMatrix);
 //---------------------------
 GL_DEF_FN(glu_QuadricCallback);
 GL_DEF_FN(glu_QuadricDrawStyle);
