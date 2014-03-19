@@ -29,6 +29,21 @@ namespace GLex {
 		glBindAttribLocation(shader, index, name.c_str());
 		return 0;
 	}
+	int gl_BindFragDataLocation(lutok::state& state){
+		GLuint program = (GLuint) state.to_integer(1);
+		GLuint colorNumber = state.to_integer(2);
+		string & name = state.to_string(3);
+		glBindFragDataLocation(program, colorNumber, name.c_str());
+		return 0;
+	}
+	int gl_BindFragDataLocationIndexed(lutok::state& state){
+		GLuint program = (GLuint) state.to_integer(1);
+		GLuint colorNumber = state.to_integer(2);
+		GLuint index = state.to_number(3);
+		string & name = state.to_string(4);
+		glBindFragDataLocationIndexed(program, colorNumber, index, name.c_str());
+		return 0;
+	}
 	int gl_BindBuffer(lutok::state& state){
 		GLenum target = state.to_integer(1);
 		GLuint buffer = state.to_integer(2);

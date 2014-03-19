@@ -90,6 +90,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["BeginSurface"] = gl_BeginSurface;
 	module["BeginTrim"] = gl_BeginTrim;
 	module["BindBuffer"] = gl_BindBuffer;
+	module["BindFragDataLocation"] = gl_BindFragDataLocation;
+	module["BindFragDataLocationIndexed"] = gl_BindFragDataLocationIndexed;
 	module["BindFramebuffer"] = gl_BindFrameBuffer;
 	module["BindRenderbuffer"] = gl_BindRenderBuffer;
 	module["BindVertexArray"] = gl_BindVertexArray;

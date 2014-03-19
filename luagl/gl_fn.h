@@ -13,6 +13,8 @@ GL_DEF_FN(gl_BeginSurface);
 GL_DEF_FN(gl_BeginTrim);
 GL_DEF_FN(gl_BindAttribLocation);
 GL_DEF_FN(gl_BindBuffer);
+GL_DEF_FN(gl_BindFragDataLocation);
+GL_DEF_FN(gl_BindFragDataLocationIndexed);
 GL_DEF_FN(gl_BindFrameBuffer);
 GL_DEF_FN(gl_BindRenderBuffer);
 GL_DEF_FN(gl_BindVertexArray);
