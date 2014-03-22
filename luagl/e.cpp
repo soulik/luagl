@@ -45,6 +45,16 @@ namespace GLex {
 		glEnd();
 		return 0;
 	}
+	int gl_EndConditionalRender(lutok::state& state){
+		glEndConditionalRender();
+		return 0;
+	}
+	int gl_EndQuery(lutok::state& state){
+		glEndQuery(
+			(GLenum) state.to_integer(1)
+			);
+		return 0;
+	}
 	int gl_EndList(lutok::state& state){
 		glEndList();
 		return 0;

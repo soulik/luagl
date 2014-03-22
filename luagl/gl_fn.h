@@ -9,6 +9,8 @@ GL_DEF_FN(gl_AttachShader);
 GL_DEF_FN(gl_Begin);
 GL_DEF_FN(gl_BeginCurve);
 GL_DEF_FN(gl_BeginPolygon);
+GL_DEF_FN(gl_BeginConditionalRender);
+GL_DEF_FN(gl_BeginQuery);
 GL_DEF_FN(gl_BeginSurface);
 GL_DEF_FN(gl_BeginTrim);
 GL_DEF_FN(gl_BindAttribLocation);
@@ -24,8 +26,6 @@ GL_DEF_FN(gl_BlendColor);
 GL_DEF_FN(gl_BlendEquation);
 GL_DEF_FN(gl_BlendFunc);
 GL_DEF_FN(gl_BlitFramebuffer);
-GL_DEF_FN(gl_BufferData);
-GL_DEF_FN(gl_BufferSubData);
 GL_DEF_FN(glu_Build1DMipmaps);
 GL_DEF_FN(glu_Build2DMipmaps);
 //---------------------------
@@ -95,6 +95,8 @@ GL_DEF_FN(gl_Enable);
 GL_DEF_FN(gl_EnableClientState);
 GL_DEF_FN(gl_EnableVertexAttribArray);
 GL_DEF_FN(gl_End);
+GL_DEF_FN(gl_EndConditionalRender);
+GL_DEF_FN(gl_EndQuery);
 GL_DEF_FN(gl_EndList);
 GL_DEF_FN(glu_ErrorString);
 GL_DEF_FN(gl_EvalCoord);
@@ -311,3 +313,5 @@ GL_DEF_FN(gl_VertexPointer);
 GL_DEF_FN(gl_Viewport);
 
 };
+
+#include "gl_fn_templates.hpp"

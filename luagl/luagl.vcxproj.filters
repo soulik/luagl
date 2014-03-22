@@ -104,5 +104,8 @@
     <ClInclude Include="gl_fn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gl_fn_templates.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -85,6 +85,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["AttachShader"] = gl_AttachShader;
 	//---------------------------
 	module["Begin"] = gl_Begin;
+	module["BeginConditionalRender"] = gl_BeginConditionalRender;
+	module["BeginQuery"] = gl_BeginQuery;
 	module["BeginCurve"] = gl_BeginCurve;
 	module["BeginPolygon"] = gl_BeginPolygon;
 	module["BeginSurface"] = gl_BeginSurface;
@@ -102,8 +104,17 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["BlendEquation"] = gl_BlendEquation;
 	module["BlendFunc"] = gl_BlendFunc;
 	module["BlitFramebuffer"] = gl_BlitFramebuffer;
-	module["BufferData"] = gl_BufferData;
-	module["BufferSubData"] = gl_BufferSubData;
+
+	module["BufferData"] = gl_BufferData<float, GLfloat>;
+	module["BufferSubData"] = gl_BufferSubData<float, GLfloat>;
+
+	module["BufferDatau"] = gl_BufferData<unsigned int, GLuint>;
+	module["BufferSubDatau"] = gl_BufferSubData<unsigned int, GLuint>;
+	module["BufferDatai"] = gl_BufferData<int, GLint>;
+	module["BufferSubDatai"] = gl_BufferSubData<int, GLint>;
+	module["BufferDatab"] = gl_BufferData<unsigned char, GLubyte>;
+	module["BufferSubDatab"] = gl_BufferSubData<unsigned char, GLubyte>;
+
 	module["Build1DMipmaps"] = glu_Build1DMipmaps;
 	module["Build2DMipmaps"] = glu_Build2DMipmaps;
 	//---------------------------
@@ -173,6 +184,8 @@ LUAGLEX_API int luaopen_gl (lua_State *L) {
 	module["EnableClientState"] = gl_EnableClientState;
 	module["EnableVertexAttribArray"] = gl_EnableVertexAttribArray;
 	module["End"] = gl_End;
+	module["EndConditionalRender"] = gl_EndConditionalRender;
+	module["EndQuery"] = gl_EndQuery;
 	module["EndList"] = gl_EndList;
 	module["ErrorString"] = glu_ErrorString;
 	module["EvalCoord"] = gl_EvalCoord;

@@ -5,6 +5,20 @@ namespace GLex {
 		glBegin((GLuint)state.to_integer(1));
 		return 0;
 	}
+	int gl_BeginConditionalRender(lutok::state& state){
+		glBeginConditionalRender(
+			(GLuint) state.to_integer(1),
+			(GLenum) state.to_integer(2)
+			);
+		return 0;
+	}
+	int gl_BeginQuery(lutok::state& state){
+		glBeginQuery(
+			(GLenum) state.to_integer(1),
+			(GLuint) state.to_integer(2)
+			);
+		return 0;
+	}
 	int gl_BeginCurve(lutok::state& state){
 		//glBeginCurve(
 		//__RENDER->dprintf("Stub(%s)","glBeginCurve()");
@@ -103,52 +117,7 @@ namespace GLex {
 		);
 		return 0;
 	}
-	int gl_BufferData(lutok::state& state){
-		GLenum target = state.to_integer(1);
-		GLsizei size = 0;
 
-		GLfloat * data;
-		vector<float> _data;
-
-		if (state.is_number(2)){
-			size = (GLsizei) state.to_integer(2);
-			data = NULL;
-		}else{
-			if (state.is_table(2)){
-				size = getArray<float>(state, 2, _data);
-				data = _data.data();
-			}else{
-				data = NULL;
-			}
-		}
-		GLenum usage = state.to_integer(3);
-		GLsizeiptr data_size = size * sizeof(GLfloat);
-		glBufferData(target, data_size, data, usage);
-		return 0;
-	}
-
-	int gl_BufferSubData(lutok::state& state){
-		GLenum target = state.to_integer(1);
-		GLint offset = state.to_integer(2);
-		GLsizei size = 0;
-		GLfloat * data;
-		vector<float> _data;
-
-		if (state.is_number(3)){
-			data = (GLfloat *) state.to_integer(3);
-		}else{
-			if (state.is_table(3)){
-				size = getArray<float>(state, 3, _data);
-				data = _data.data();
-			}else{
-				data = NULL;
-			}
-		}
-		GLintptr data_offset = offset * sizeof(GLfloat);
-		GLsizeiptr data_size = size * sizeof(GLfloat);
-		glBufferSubData(target, data_offset, data_size, data);
-		return 0;
-	}
 	int glu_Build1DMipmaps(lutok::state& state){
 		//__RENDER->dprintf("Stub(%s)","glBuild1DMipmaps()");
 		return 0;

@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gl_fn.h" />
+    <ClInclude Include="gl_fn_templates.hpp" />
     <ClInclude Include="main.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
