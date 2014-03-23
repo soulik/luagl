@@ -169,15 +169,24 @@ namespace GLex {
 		}
 		return 0;
 	}
+	/*
+	DrawElements(mode, indices_table)
+	DrawElements(mode, count, offset)
+	*/
 	int gl_DrawElements(lutok::state& state){
 		const GLuint * data;
 		vector<unsigned int> _data;
 		size_t count=0;
 
 		if (state.is_number(2)){
-			data = (GLuint *) state.to_integer(2);
+			count = state.to_integer(2);
+			if (state.is_number(3)){
+				data = (GLuint *) state.to_integer(3);
+			}else{
+				data = (GLuint *)0;
+			}
 		}else{
-			if (state.is_table(1)){
+			if (state.is_table(2)){
 				count = getArray<unsigned int>(state, 2, _data);
 				data = _data.data();
 			}else{
