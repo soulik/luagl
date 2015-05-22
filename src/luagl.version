@@ -1,0 +1,4 @@
+luagl {
+	global: luaopen_luagl;
+	local: *;
+};

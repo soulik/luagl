@@ -1,9 +1,9 @@
-﻿*.swp
+*.swp
 *.sdf
 *.suo
 *.opensdf
 *.user
-Debug/*
-Release/*
-luagl/Debug/*
-luagl/Release/*
+*.so
+*.so.*
+build/*
+tests/zmq.lua
