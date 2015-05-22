@@ -1,6 +1,5 @@
 #define WIN32_LEAN_AND_MEAN
 
-#include <lua.hpp>
 #include <GL/glew.h>
 #if defined(_WIN32)
 	#include <GL/wglew.h>
