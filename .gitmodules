@@ -1,3 +1,6 @@
 [submodule "dependencies/lutok2"]
 	path = dependencies/lutok2
 	url = https://github.com/soulik/lutok2.git
+[submodule "dependencies/glew"]
+	path = dependencies/glew
+	url = https://github.com/soulik/glew.git
