@@ -73,7 +73,7 @@ static int get_last_error(State& state){
 	}
 }
 
-extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_gl(lua_State *L) {
+extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	State * state = new State(L);
 	Module module;
 	module["Accum"] = gl_Accum;

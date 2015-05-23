@@ -83,7 +83,7 @@ namespace LuaGL {
 		unsigned char * data;
 		vector<unsigned char> _data;
 
-		if (state.stack->is<LUA_TUSERDATA>(7)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(7)){
 			data = (unsigned char *) state.stack->to<void*>(7);
 		}else{
 			if (state.stack->is<LUA_TTABLE>(7)){
@@ -113,8 +113,7 @@ namespace LuaGL {
 		size_t size = 0;
 		unsigned char * data;
 		vector<unsigned char> _data;
-
-		if (state.stack->is<LUA_TUSERDATA>(8)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(8)){
 			data = (unsigned char *) state.stack->to<void*>(8);
 		}else{
 			if (state.stack->is<LUA_TTABLE>(8)){
@@ -146,7 +145,7 @@ namespace LuaGL {
 		unsigned char * data;
 		vector<unsigned char> _data;
 
-		if (state.stack->is<LUA_TUSERDATA>(9)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(9)){
 			data = (unsigned char *) state.stack->to<void*>(9);
 		}else{
 			if (state.stack->is<LUA_TTABLE>(9)){
@@ -190,7 +189,7 @@ namespace LuaGL {
 		unsigned char * data;
 		vector<unsigned char> _data;
 
-		if (state.stack->is<LUA_TUSERDATA>(6)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(6)){
 			data = (unsigned char *) state.stack->to<void*>(6);
 		}else{
 			if (state.stack->is<LUA_TTABLE>(6)){
@@ -217,7 +216,7 @@ namespace LuaGL {
 		unsigned char * data;
 		vector<unsigned char> _data;
 
-		if (state.stack->is<LUA_TUSERDATA>(8)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(8)){
 			data = (unsigned char *) state.stack->to<void*>(8);
 		}else{
 			if (state.stack->is<LUA_TTABLE>(8)){
@@ -246,7 +245,7 @@ namespace LuaGL {
 		unsigned char * data;
 		vector<unsigned char> _data;
 
-		if (state.stack->is<LUA_TUSERDATA>(10)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(10)){
 			data = (unsigned char *) state.stack->to<void*>(10);
 		}else{
 			if (state.stack->is<LUA_TTABLE>(10)){

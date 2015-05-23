@@ -86,7 +86,7 @@ namespace LuaGL {
 		return 0;
 	}
 	int glu_DeleteQuadric(State& state){
-		if (state.stack->is<LUA_TUSERDATA>(1)){
+		if (state.stack->is<LUA_TLIGHTUSERDATA>(1)){
 			GLUquadric * q = (GLUquadric *)state.stack->to<void*>(1);
 			gluDeleteQuadric((GLUquadric*)q);
 		}
