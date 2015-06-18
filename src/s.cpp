@@ -64,7 +64,7 @@ namespace LuaGL {
 		wglSwapIntervalEXT((int) state.stack->to<int>(1));
 #else
 #ifdef __GLXEW_H__
-		glXSwapIntervalEXT((int) state.stack->to<int>(1));
+		glXSwapIntervalMESA((int) state.stack->to<int>(1));
 #endif
 #endif
 		return 0;

@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 namespace LuaGL {
 	int gl_GenBuffers(State& state){
@@ -239,8 +240,8 @@ namespace LuaGL {
 		state.stack->push<int>(wglGetSwapIntervalEXT());
 #else
 #ifdef __GLXEW_H__
-		glXSwapIntervalEXT((int) state.stack->to<int>(1));
-		state.stack->push<int>(glXGetSwapIntervalEXT());
+		glXSwapIntervalMESA((int) state.stack->to<int>(1));
+		state.stack->push<int>(glXGetSwapIntervalMESA());
 #endif
 #endif
 		return 1;

@@ -4,7 +4,7 @@
 
 namespace LuaGL {
 
-static int prepareMisc(State& state){
+int prepareMisc(State& state){
 	state.stack->newTable();
 #ifdef __WGLEW_H__
 	state.stack->setField<bool>("swap_control", static_cast<bool>(WGLEW_EXT_swap_control));
@@ -18,7 +18,7 @@ static int prepareMisc(State& state){
 	return 1;
 }
 
-static int prepareGLSL(State& state){
+int prepareGLSL(State& state){
 	state.stack->newTable();
 
 	/* OPENGL 3.0 */
@@ -28,38 +28,39 @@ static int prepareGLSL(State& state){
 	return 1;
 }
 
-static int prepareTextureArray(State& state){
+int prepareTextureArray(State& state){
 	state.stack->newTable();
 	state.stack->setField<bool>("opengl21", static_cast<bool>(GLEW_EXT_texture3D && GLEW_EXT_copy_texture));
 	return 1;
 }
 
-static int prepareMultiTexturing(State& state){
+int prepareMultiTexturing(State& state){
 	state.stack->newTable();
 	state.stack->setField<bool>("opengl13", static_cast<bool>(GLEW_VERSION_1_3));
 	state.stack->setField<bool>("multitexture", static_cast<bool>(GLEW_ARB_multitexture));
 	return 1;
 }
 
-static int prepareVBO(State& state){
+int prepareVBO(State& state){
 	state.stack->newTable();
 	state.stack->setField<bool>("opengl15", static_cast<bool>(GLEW_VERSION_1_5));
 	state.stack->setField<bool>("vertexbuffer", static_cast<bool>(GLEW_ARB_vertex_buffer_object));
 	return 1;
 }
 
-static int prepareFBO(State& state){
+int prepareFBO(State& state){
 	state.stack->newTable();
 	state.stack->setField<bool>("framebuffer", static_cast<bool>(GLEW_ARB_framebuffer_object));
 	return 1;
 }
 
-static int internalTest(State& state){
+int internalTest(State& state){
 	const void * data = state.stack->to<void*>(1);
 	return 0;
 }
 
-static int get_last_error(State& state){
+int get_last_error(State& state){
+#ifdef _WIN32
 	DWORD le = GetLastError();
 	char buffer[1024];
 	DWORD len = FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_MAX_WIDTH_MASK,NULL,le,0,buffer,1024,NULL);
@@ -71,6 +72,8 @@ static int get_last_error(State& state){
 		state.stack->push<const string &>(buffer);
 		return 1;
 	}
+#endif
+	return 0;
 }
 
 extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {

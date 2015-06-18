@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 namespace LuaGL {
 	int glu_PartialDisk(State& state){

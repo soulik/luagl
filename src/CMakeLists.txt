@@ -37,7 +37,7 @@ set(luagl_version_script luagl.version)
 
 IF(UNIX)
     IF(CMAKE_COMPILER_IS_GNUCC)
-         SET(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} ${CMAKE_CXX_COMPILE_OPTIONS_VISIBILITY}hidden -Wl,--version-script=${luagl_version_script}")
+         SET(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} ${CMAKE_CXX_COMPILE_OPTIONS_VISIBILITY}hidden -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/${luagl_version_script}")
     ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-declarations")
