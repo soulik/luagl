@@ -22,7 +22,7 @@ include_directories(SYSTEM
 	${LUA_INCLUDE_DIR}/lua5.1
 )
 
-include_directories(${CURRENT_DIR}/dependencies/lutok2/include)
+include_directories(dependencies/lutok2/include)
 
 add_subdirectory(src)
 
