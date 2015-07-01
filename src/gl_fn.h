@@ -303,6 +303,7 @@ GL_DEF_FN(gl_Translatef);
 //---------------------------
 GL_DEF_FN(gl_Uniformf);
 GL_DEF_FN(gl_Uniformi);
+GL_DEF_FN(gl_Uniformui);
 GL_DEF_FN(gl_UniformMatrix);
 
 GL_DEF_FN(glu_UnloadProject);

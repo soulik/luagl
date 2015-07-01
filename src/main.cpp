@@ -394,6 +394,7 @@ extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	//---------------------------
 	module["Uniformf"] = gl_Uniformf;
 	module["Uniformi"] = gl_Uniformi;
+	module["Uniformui"] = gl_Uniformui;
 	module["UniformMatrix"] = gl_UniformMatrix;
 
 	module["UnloadProject"] = glu_UnloadProject;

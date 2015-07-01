@@ -71,6 +71,39 @@ namespace LuaGL {
 		}
 		return 0;
 	}
+
+	int gl_Uniformui(State& state){
+		int argc = state.stack->getTop();
+		switch (argc){
+		case 5:
+			glUniform4ui((GLint)state.stack->to<int>(1), (GLuint)state.stack->to<int>(2), (GLuint)state.stack->to<int>(3), (GLuint)state.stack->to<int>(4), (GLuint)state.stack->to<int>(5));
+			break;
+		case 4:
+			glUniform3ui((GLint)state.stack->to<int>(1), (GLuint)state.stack->to<int>(2), (GLuint)state.stack->to<int>(3), (GLuint)state.stack->to<int>(4));
+			break;
+		case 3:
+			glUniform2ui((GLint)state.stack->to<int>(1), (GLuint)state.stack->to<int>(2), (GLuint)state.stack->to<int>(3));
+			break;
+		case 2:
+			if (state.stack->is<LUA_TTABLE>(2)){
+				size_t size = 0;
+				GLuint * data;
+				vector<unsigned int> _data;
+
+				size = getArray<unsigned int>(state, 2, _data);
+				data = _data.data();
+				glUniform1uiv((GLint)state.stack->to<int>(1), (GLsizei)size, (GLuint *)data);
+			}
+			else if (state.stack->is<LUA_TNUMBER>(2)){
+				glUniform1ui((GLint)state.stack->to<int>(1), (GLuint)state.stack->to<int>(2));
+			}
+			break;
+		default:
+			break;
+		}
+		return 0;
+	}
+
 	/*
 		uniformMatrix(location, matrixTable, rows, cols, transpose)
 	*/
