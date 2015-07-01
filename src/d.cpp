@@ -144,6 +144,10 @@ namespace LuaGL {
 		glDisableVertexAttribArray((GLuint) state.stack->to<int>(1));
 		return 0;
 	}
+	int glu_Disk(State& state){
+		gluDisk((GLUquadric*)state.stack->to<void*>(1), (GLdouble)state.stack->to<LUA_NUMBER>(2), (GLdouble)state.stack->to<LUA_NUMBER>(3), (GLint)state.stack->to<int>(4), (GLint)state.stack->to<int>(5));
+		return 0;
+	}
 
 	int gl_DrawArrays(State& state){
 		//__RENDER->dprintf("Stub(%s)","glDrawArrays()");

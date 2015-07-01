@@ -173,6 +173,7 @@ extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	module["Disable"] = gl_Disable;
 	module["DisableClientState"] = gl_DisableClientState;
 	module["DisableVertexArray"] = gl_DisableVertexArray;
+	module["Disk"] = glu_Disk;
 	module["DrawArrays"] = gl_DrawArrays;
 	module["DrawBuffer"] = gl_DrawBuffer;
 	module["DrawBuffers"] = gl_DrawBuffers;
@@ -230,8 +231,10 @@ extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	module["GetPolygonStipple"] = gl_GetPolygonStipple;
 	module["GetProgramInfoLog"] = gl_GetProgramInfoLog;
 	module["GetProgramiv"] = gl_GetProgramiv;
+	module["GetProgramBinary"] = gl_GetProgramBinary;
 	module["GetShaderInfoLog"] = gl_GetShaderInfoLog;
 	module["GetShaderiv"] = gl_GetShaderiv;
+	module["GetShaderSource"] = gl_GetShaderSource;
 	module["GetSwapInterval"] = gl_GetSwapInterval;
 	module["GetTessProperty"] = gl_GetTessProperty;
 	module["GetTexEnv"] = gl_GetTexEnv;
@@ -334,6 +337,7 @@ extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	module["ProgramUniformf"] = gl_ProgramUniformf;
 	module["ProgramUniformi"] = gl_ProgramUniformi;
 	module["ProgramUniformMatrix"] = gl_ProgramUniformMatrix;
+	module["ProgramBinary"] = gl_ProgramBinary;
 	//---------------------------
 	module["QuadricCallback"] = glu_QuadricCallback;
 	module["QuadricDrawStyle"] = glu_QuadricDrawStyle;
@@ -356,6 +360,7 @@ extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	module["SelectBuffer"] = gl_SelectBuffer;
 	module["ShadeModel"] = gl_ShadeModel;
 	module["ShaderSource"] = gl_ShaderSource;
+	module["ShaderBinary"] = gl_ShaderBinary;
 	module["Sphere"] = glu_Sphere;
 	module["StencilFunc"] = gl_StencilFunc;
 	module["StencilMask"] = gl_StencilMask;

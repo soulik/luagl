@@ -292,6 +292,39 @@ namespace LuaGL {
 		return 1;
 	}
 
+	int gl_GetShaderSource(State & state){
+		GLuint shaderID = (GLuint)state.stack->to<int>(1);
+		GLint maxLength;
+		GLsizei length;
+
+		glGetShaderiv(shaderID, GL_SHADER_SOURCE_LENGTH, &maxLength);
+
+		GLchar * src = new char[maxLength];
+		glGetShaderSource(shaderID, maxLength, &length, src);
+		state.stack->pushLString(src, length);
+		delete[] src;
+		return 1;
+	}
+
+	int gl_GetProgramBinary(State & state){
+		GLuint program = (GLuint)state.stack->to<int>(1);
+		GLint maxLength;
+		GLsizei length;
+
+		glGetProgramiv(program, GL_PROGRAM_BINARY_LENGTH, &maxLength);
+
+		GLenum binaryFormat;
+		GLchar * binary = new char[maxLength];
+
+		glGetProgramBinary(program, maxLength, &length, &binaryFormat, binary);
+		
+		state.stack->push<int>(binaryFormat);
+		state.stack->pushLString(binary, length);
+
+		delete[] binary;
+		return 2;
+	}
+
 	int gl_GetUniformLocation(State& state){
 		const std::string name = state.stack->to<const string>(2);
 		int ret = (int) glGetUniformLocation((GLuint) state.stack->to<int>(1), (const GLchar *) name.c_str());

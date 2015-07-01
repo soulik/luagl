@@ -43,6 +43,18 @@ namespace LuaGL {
 		return 0;
 	}
 
+	int gl_ShaderBinary(State& state){
+		if (state.stack->is<LUA_TTABLE>(1) && state.stack->is<LUA_TNUMBER>(2) && state.stack->is<LUA_TSTRING>(3)){
+			vector<unsigned int> shaders;
+			size_t count = getArray<unsigned int>(state, 1, shaders);
+			GLenum binaryFormat = state.stack->to<int>(2);
+			string binary = state.stack->toLString(3);
+
+			glShaderBinary(count, shaders.data(), binaryFormat, binary.c_str(), binary.length());
+		}
+		return 0;
+	}
+
 	int glu_Sphere(State& state){
 		gluSphere((GLUquadric*) state.stack->to<void*>(1), (GLdouble) state.stack->to<LUA_NUMBER>(2), (GLint) state.stack->to<int>(3), (GLint) state.stack->to<int>(4));
 		return 0;

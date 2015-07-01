@@ -304,4 +304,15 @@ namespace LuaGL {
 		return 0;
 	}
 
+	int gl_ProgramBinary(State& state){
+		if (state.stack->is<LUA_TNUMBER>(1) && state.stack->is<LUA_TNUMBER>(2) && state.stack->is<LUA_TSTRING>(3)){
+			GLuint program = state.stack->to<int>(1);
+			GLenum binaryFormat = state.stack->to<int>(2);
+			string binary = state.stack->toLString(3);
+
+			glProgramBinary(program, binaryFormat, binary.c_str(), binary.length());
+		}
+		return 0;
+	}
+
 }
