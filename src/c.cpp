@@ -1,4 +1,4 @@
-#include "main.h"
+﻿#include "main.h"
 
 namespace LuaGL {
 	int gl_CallList(State& state){
@@ -41,6 +41,48 @@ namespace LuaGL {
 		glClearAccum((GLfloat)state.stack->to<LUA_NUMBER>(1),(GLfloat)state.stack->to<LUA_NUMBER>(2),(GLfloat)state.stack->to<LUA_NUMBER>(3),(GLfloat)state.stack->to<LUA_NUMBER>(4));
 		return 0;
 	}
+	int gl_ClearBuffer(State& state){
+		Stack * stack = state.stack;
+		GLenum buffer = static_cast<GLenum>(state.stack->to<int>(1));
+		GLint drawBuffer = static_cast<GLint>(state.stack->to<LUA_NUMBER>(2));
+		glClearBufferfi(buffer, drawBuffer, static_cast<GLfloat>(state.stack->to<LUA_NUMBER>(3)), static_cast<GLint>(state.stack->to<int>(4)));
+		return 0;
+	}
+
+	int gl_ClearBufferi(State& state){
+		Stack * stack = state.stack;
+		GLenum buffer = static_cast<GLenum>(state.stack->to<int>(1));
+		GLint drawBuffer = static_cast<GLint>(state.stack->to<LUA_NUMBER>(2));
+		if (stack->is<LUA_TTABLE>(3)){
+
+			GLint values​[4] = { 0, 0, 0, 0 };
+			for (int i = 0; i < stack->objLen(3); i++){
+				stack->getField(i + 1, 3);
+				values​[i] = stack->to<int>(-1);
+				stack->pop(1);
+			}
+			glClearBufferiv(buffer, drawBuffer, values​);
+		}
+		return 0;
+	}
+
+	int gl_ClearBufferf(State& state){
+		Stack * stack = state.stack;
+		GLenum buffer = static_cast<GLenum>(state.stack->to<int>(1));
+		GLint drawBuffer = static_cast<GLint>(state.stack->to<LUA_NUMBER>(2));
+		if (stack->is<LUA_TTABLE>(3)){
+
+			GLfloat values​[4] = { 0, 0, 0, 0 };
+			for (int i = 0; i < stack->objLen(3); i++){
+				stack->getField(i + 1, 3);
+				values​[i] = static_cast<GLfloat>(stack->to<LUA_NUMBER>(-1));
+				stack->pop(1);
+			}
+			glClearBufferfv(buffer, drawBuffer, values​);
+		}
+		return 0;
+	}
+
 	int gl_ClearDepth(State& state){
 		glClearDepth((GLclampd)state.stack->to<LUA_NUMBER>(1));
 		return 0;

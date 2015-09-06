@@ -124,6 +124,9 @@ extern "C" LIBLUAGL_DLL_EXPORTED int luaopen_luagl(lua_State *L) {
 	module["CheckFramebufferStatus"] = gl_CheckFramebufferStatus;
 	module["Clear"] = gl_Clear;
 	module["ClearAccum"] = gl_ClearAccum;
+	module["ClearBuffer"] = gl_ClearBuffer;
+	module["ClearBufferi"] = gl_ClearBufferi;
+	module["ClearBufferf"] = gl_ClearBufferf;
 	module["ClearColor"] = gl_ClearColor;
 	module["ClearDepth"] = gl_ClearDepth;
 	module["ClearIndex"] = gl_ClearIndex;
